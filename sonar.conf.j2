@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="Sonar" type="Infragravity.Sonar.SonarConfigurationSection, Sonar"/>
+  </configSections>
+  <connectionStrings>
+    <add name="perfmon" providerName="mspdh" connectionString="." />
+    <add name="sonar" providerName="wsman" connectionString="Server=sonar;" /> 
+ </connectionStrings>
+  <Sonar>
+    <Runtime scrapeIntervalSeconds="5" skipSSLCheck="true" threads="1"/>
+    <Schedules>   
+
+{% for check in sonar_checks %}
+    {{ check.schedule }}
+{% endfor %}
+
+    </Schedules>
+    <Servers>
+        <add name="sonar" url="http://localhost:5985/wsman" username="" password="" timeoutMilliseconds="1000" authType="Negotiate"/>   
+    </Servers>
+    <Queries>
+
+{% for check in sonar_checks %}
+    {{ check.check }}
+{% endfor %}
+
+    </Queries>
+  </Sonar>
+ </configuration>

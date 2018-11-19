@@ -1,0 +1,7 @@
+$zippath = "C:\Program Files\Sonar\sonar-{{ sonar_version_short }}-win10-x64.zip" 
+
+$Destination = "C:\Program Files\Sonar" 
+
+Add-Type -assembly "system.io.compression.filesystem" 
+
+[io.compression.zipfile]::ExtractToDirectory($zippath, $destination)
