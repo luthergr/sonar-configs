@@ -9,6 +9,10 @@
  </connectionStrings>
   <Sonar>
     <Runtime scrapeIntervalSeconds="5" skipSSLCheck="true" threads="1"/>
+    <InputAdapters>
+      <add provider="wsman" type="Infragravity.Sonar.Adapters.WsMan.WsmanAdapterFactory,Sonar" />
+      <add provider="mspdh" type="Infragravity.Sonar.Adapters.PerformanceCounter.PerfCounterAdapterFactory,Infragravity.Sonar.Adapters.PerformanceCounter" />
+    </InputAdapters>
     <Schedules>   
 
 {% for check in sonar_checks %}
